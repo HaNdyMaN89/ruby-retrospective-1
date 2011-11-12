@@ -1,5 +1,4 @@
 class Array
-
   def to_hash
     {}.tap do |hash|
       each { |el| hash[el[0]] = el[1] }
