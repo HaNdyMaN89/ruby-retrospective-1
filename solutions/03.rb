@@ -212,8 +212,8 @@ class Cart
   def add(product_name, qty = 1)
     @inventory.find_product(product_name)
     if @purchased[product_name] + qty < 1 or @purchased[product_name] + qty > 99
-        raise "Invalid product count - #{ product_name } - "
-          + (@purchased[product_name] + qty).to_s + "."
+      raise "Invalid product count - #{ product_name } - "
+        + (@purchased[product_name] + qty).to_s + "."
     end
     @purchased[product_name] += qty
   end
@@ -236,6 +236,9 @@ class Cart
   end
 
   def use(coupon_name)
+    if @used_coupon
+      raise "Already using a coupon - #{ @used_coupon.name }."
+    end
     @used_coupon = @inventory.find_coupon(coupon_name)
   end
 
